@@ -1,4 +1,4 @@
-﻿import SwiftUI
+import SwiftUI
 
 struct FilterSheetView: View {
     @Binding var criteria: FilterCriteria

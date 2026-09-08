@@ -1,4 +1,4 @@
-﻿# TasteIndia — iOS (Indian Cuisine Discovery)
+# TasteIndia — iOS (Indian Cuisine Discovery)
 
 A native iOS application built with Swift and SwiftUI for discovering Indian recipes powered by TheMealDB API.
 

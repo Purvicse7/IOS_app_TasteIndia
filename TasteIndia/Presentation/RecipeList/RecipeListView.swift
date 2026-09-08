@@ -1,4 +1,4 @@
-﻿import SwiftUI
+import SwiftUI
 
 struct RecipeListView: View {
     @StateObject var viewModel: RecipeListViewModel

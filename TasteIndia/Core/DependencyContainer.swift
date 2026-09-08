@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 final class DependencyContainer: @unchecked Sendable {
     static let shared = DependencyContainer()

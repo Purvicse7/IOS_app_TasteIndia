@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 enum NetworkError: LocalizedError, Equatable {
     case invalidURL

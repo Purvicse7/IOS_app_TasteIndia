@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 struct MealDetailMapper {
     static func mapSummary(_ dto: MealSummaryDTO) -> MealSummary {

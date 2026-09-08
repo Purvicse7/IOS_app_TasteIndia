@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 struct MealsResponseDTO: Decodable {
     let meals: [MealSummaryDTO]?

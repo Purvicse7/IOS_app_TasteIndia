@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 struct MealSummary: Identifiable, Hashable, Sendable {
     let id: String

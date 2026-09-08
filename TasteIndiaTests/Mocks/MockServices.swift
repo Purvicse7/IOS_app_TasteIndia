@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 @testable import TasteIndia
 
 final class MockAPIClient: APIClientProtocol, @unchecked Sendable {

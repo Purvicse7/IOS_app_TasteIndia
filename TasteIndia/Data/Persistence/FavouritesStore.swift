@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 protocol FavouritesStoreProtocol: AnyObject, Sendable {
     func getFavourites() -> Set<String>

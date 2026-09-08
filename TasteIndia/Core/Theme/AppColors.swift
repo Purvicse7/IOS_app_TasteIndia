@@ -1,4 +1,4 @@
-﻿import SwiftUI
+import SwiftUI
 
 enum AppTheme {
     static let primaryAccent = Color(red: 0.85, green: 0.35, blue: 0.15) // Warm Terracotta / Saffron

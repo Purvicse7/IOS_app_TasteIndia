@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 protocol APIClientProtocol {
     func execute<T: Decodable>(url: URL) async throws -> T

@@ -1,4 +1,4 @@
-﻿import Foundation
+import Foundation
 
 protocol RecipeRepositoryProtocol: Sendable {
     func fetchIndianMeals(forceRefresh: Bool) async throws -> [MealSummary]
