@@ -90,7 +90,7 @@ struct RecipeDetailView: View {
                                             .font(.caption2)
                                             .padding(.horizontal, 8)
                                             .padding(.vertical, 4)
-                                            .background(Color(uiColor: .tertiarySystemGroupedBackground))
+                                            .background(AppTheme.tertiaryBackground)
                                             .clipShape(RoundedRectangle(cornerRadius: 6))
                                     }
                                 }
@@ -119,7 +119,7 @@ struct RecipeDetailView: View {
                                 }
                             }
                             .padding()
-                            .background(Color(uiColor: .secondarySystemGroupedBackground))
+                            .background(AppTheme.cardBackground)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                         

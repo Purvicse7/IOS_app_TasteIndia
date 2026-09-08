@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if !SWIFT_PACKAGE
 @main
 struct TasteIndiaApp: App {
     @StateObject private var listViewModel: RecipeListViewModel
@@ -20,3 +21,4 @@ struct TasteIndiaApp: App {
         }
     }
 }
+#endif

@@ -23,7 +23,7 @@ struct RecipeListView: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(Color(uiColor: .tertiarySystemGroupedBackground))
+                    .background(AppTheme.tertiaryBackground)
                 }
                 
                 // Content State
