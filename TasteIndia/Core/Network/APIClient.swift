@@ -1,10 +1,10 @@
 import Foundation
 
-protocol APIClientProtocol {
+protocol APIClientProtocol: Sendable {
     func execute<T: Decodable>(url: URL) async throws -> T
 }
 
-final class URLSessionAPIClient: APIClientProtocol {
+final class URLSessionAPIClient: APIClientProtocol, @unchecked Sendable {
     private let session: URLSession
     private let decoder: JSONDecoder
     

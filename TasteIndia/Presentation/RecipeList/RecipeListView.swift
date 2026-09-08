@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 struct RecipeListView: View {
     @StateObject var viewModel: RecipeListViewModel
     @State private var navigationPath = NavigationPath()

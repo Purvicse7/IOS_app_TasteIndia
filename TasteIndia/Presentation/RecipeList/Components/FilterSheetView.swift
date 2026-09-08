@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 struct FilterSheetView: View {
     @Binding var criteria: FilterCriteria
     let availableCategories: [String]

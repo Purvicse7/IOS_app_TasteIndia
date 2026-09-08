@@ -5,7 +5,7 @@ final class RecipeListViewModelTests: XCTestCase {
     
     func testSearchAndSortOrdering() async throws {
         let mockClient = MockAPIClient()
-        guard let indianURL = Bundle.module.url(forResource: "indian_meals_fixture", withExtension: "json") else {
+        guard let indianURL = Bundle.testFixtureURL(named: "indian_meals_fixture") else {
             XCTFail("indian_meals_fixture.json not found")
             return
         }
@@ -15,7 +15,6 @@ final class RecipeListViewModelTests: XCTestCase {
         let mockFavStore = MockFavouritesStore()
         let repository = RecipeRepository(apiClient: mockClient, favouritesStore: mockFavStore)
         
-        // Test A-Z sort
         var criteriaAsc = FilterCriteria()
         criteriaAsc.sortOption = .nameAscending
         let ascResults = try await repository.filterMeals(criteria: criteriaAsc)
@@ -28,7 +27,6 @@ final class RecipeListViewModelTests: XCTestCase {
             )
         }
         
-        // Test search query
         var criteriaSearch = FilterCriteria()
         criteriaSearch.searchQuery = "paneer"
         let searchResults = try await repository.filterMeals(criteria: criteriaSearch)

@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 struct RecipeRowView: View {
     let meal: MealSummary
     let isFavourite: Bool

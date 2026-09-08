@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 struct RecipeDetailView: View {
     @StateObject private var viewModel: RecipeDetailViewModel
     @Environment(\.openURL) private var openURL

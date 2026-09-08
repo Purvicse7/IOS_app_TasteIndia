@@ -4,11 +4,10 @@ import XCTest
 final class FilterIntersectionTests: XCTestCase {
     
     func testIndianBoundaryPreservedWhenFilteringByCategory() async throws {
-        // Prepare mock client with fixtures
         let mockClient = MockAPIClient()
         
-        guard let indianURL = Bundle.module.url(forResource: "indian_meals_fixture", withExtension: "json"),
-              let categoryURL = Bundle.module.url(forResource: "category_chicken_fixture", withExtension: "json") else {
+        guard let indianURL = Bundle.testFixtureURL(named: "indian_meals_fixture"),
+              let categoryURL = Bundle.testFixtureURL(named: "category_chicken_fixture") else {
             XCTFail("Required test fixtures not found")
             return
         }
@@ -22,15 +21,10 @@ final class FilterIntersectionTests: XCTestCase {
         let mockFavStore = MockFavouritesStore()
         let repository = RecipeRepository(apiClient: mockClient, favouritesStore: mockFavStore)
         
-        // Filter by Chicken
         var criteria = FilterCriteria()
         criteria.selectedCategory = "Chicken"
         
         let results = try await repository.filterMeals(criteria: criteria)
-        
-        // Indian meals: 52795 (Chicken Handi), 52785 (Dal fry), 52865, 52862, 52894 (Chicken Tikka Masala)
-        // Chicken category: 52795 (Chicken Handi), 52920 (Chicken Marengo), 52813 (KFC), 52894 (Chicken Tikka Masala)
-        // Intersected set MUST contain 52795 and 52894, and MUST NOT contain 52920 or 52813.
         let resultIds = Set(results.map { $0.id })
         
         XCTAssertEqual(resultIds.count, 2)
