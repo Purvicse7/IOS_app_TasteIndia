@@ -58,7 +58,11 @@ struct RecipeListView: View {
                                 }
                             }
                         }
+                        #if os(iOS)
                         .listStyle(.insetGrouped)
+#else
+                        .listStyle(.automatic)
+#endif
                         .refreshable {
                             await viewModel.applyFilters()
                         }
@@ -74,7 +78,11 @@ struct RecipeListView: View {
                 prompt: "Search Indian dishes…"
             )
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(#if os(iOS)
+                placement: .navigationBarTrailing
+#else
+                placement: .automatic
+#endif) {
                     Button {
                         viewModel.isFilterSheetPresented = true
                     } label: {

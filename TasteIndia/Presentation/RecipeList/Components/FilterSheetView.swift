@@ -47,7 +47,9 @@ struct FilterSheetView: View {
                 }
             }
             .navigationTitle("Filters & Sort")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+#endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") { dismiss() }

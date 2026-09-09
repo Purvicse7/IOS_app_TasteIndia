@@ -174,9 +174,15 @@ struct RecipeDetailView: View {
                 .padding(.bottom, 24)
             }
         }
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+#endif
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem(#if os(iOS)
+            placement: .navigationBarTrailing
+#else
+            placement: .automatic
+#endif) {
                 if case .success(_, let isFav) = viewModel.state {
                     Button {
                         viewModel.toggleFavourite()
