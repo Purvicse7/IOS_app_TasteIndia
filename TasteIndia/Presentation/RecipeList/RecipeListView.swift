@@ -78,11 +78,7 @@ struct RecipeListView: View {
                 prompt: "Search Indian dishes…"
             )
             .toolbar {
-                ToolbarItem(#if os(iOS)
-                placement: .navigationBarTrailing
-#else
-                placement: .automatic
-#endif) {
+                ToolbarItem(placement: .primaryAction) {
                     Button {
                         viewModel.isFilterSheetPresented = true
                     } label: {
