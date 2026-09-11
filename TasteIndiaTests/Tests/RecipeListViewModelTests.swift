@@ -21,9 +21,8 @@ final class RecipeListViewModelTests: XCTestCase {
         
         XCTAssertGreaterThan(ascResults.count, 1)
         for i in 0..<(ascResults.count - 1) {
-            XCTAssertLessThanOrEqual(
-                ascResults[i].name.localizedCaseInsensitiveCompare(ascResults[i + 1].name),
-                .orderedSame
+            XCTAssertTrue(
+                ascResults[i].name.localizedCaseInsensitiveCompare(ascResults[i + 1].name) != .orderedDescending
             )
         }
         
