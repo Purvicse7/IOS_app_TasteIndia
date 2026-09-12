@@ -33,9 +33,20 @@ actor RecipeRepository: RecipeRepositoryProtocol {
             throw NetworkError.invalidURL
         }
         
-        let response: MealsResponseDTO = try await apiClient.execute(url: url)
-        guard let dtos = response.meals else {
-            throw NetworkError.noData
+        var dtos: [MealSummaryDTO] = []
+        if let response: MealsResponseDTO = try? await apiClient.execute(url: url),
+           let meals = response.meals, !meals.isEmpty {
+            dtos = meals
+        } else if let fallbackUrl = Endpoint.filterByArea(area: "Indian").url,
+                  let fallbackResponse: MealsResponseDTO = try? await apiClient.execute(url: fallbackUrl),
+                  let fallbackMeals = fallbackResponse.meals, !fallbackMeals.isEmpty {
+            dtos = fallbackMeals
+        } else {
+            let directResponse: MealsResponseDTO = try await apiClient.execute(url: url)
+            guard let directMeals = directResponse.meals else {
+                throw NetworkError.noData
+            }
+            dtos = directMeals
         }
         
         let summaries = dtos.map { MealDetailMapper.mapSummary($0) }

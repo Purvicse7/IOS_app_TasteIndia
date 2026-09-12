@@ -4,6 +4,7 @@ enum Endpoint {
     private static let baseURL = "https://www.themealdb.com/api/json/v1/1"
     
     case indianMeals
+    case filterByArea(area: String)
     case mealDetail(id: String)
     case filterByCategory(category: String)
     case filterByIngredient(ingredient: String)
@@ -15,7 +16,10 @@ enum Endpoint {
         switch self {
         case .indianMeals:
             components?.path += "/filter.php"
-            components?.queryItems = [URLQueryItem(name: "a", value: "Indian")]
+            components?.queryItems = [URLQueryItem(name: "a", value: "India")]
+        case .filterByArea(let area):
+            components?.path += "/filter.php"
+            components?.queryItems = [URLQueryItem(name: "a", value: area)]
         case .mealDetail(let id):
             components?.path += "/lookup.php"
             components?.queryItems = [URLQueryItem(name: "i", value: id)]

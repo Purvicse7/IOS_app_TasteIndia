@@ -15,6 +15,7 @@ final class FilterIntersectionTests: XCTestCase {
         let indianData = try Data(contentsOf: indianURL)
         let categoryData = try Data(contentsOf: categoryURL)
         
+        mockClient.register(endpointKeyword: "a=India", data: indianData)
         mockClient.register(endpointKeyword: "a=Indian", data: indianData)
         mockClient.register(endpointKeyword: "c=Chicken", data: categoryData)
         
