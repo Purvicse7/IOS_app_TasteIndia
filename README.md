@@ -13,7 +13,33 @@ A native iOS application built with Swift and SwiftUI for discovering Indian rec
 
 ---
 
-## 2. Architecture & Design
+## 2. How to Build & Run the App
+
+### Option 1: Run in Xcode on macOS (Recommended)
+1. Double-click `Package.swift` or open this repository directory in **Xcode 15.0+** on macOS.
+2. Swift Package Manager (SPM) will automatically resolve the project structure and dependencies.
+3. Select an active scheme (e.g. `TasteIndia` target) and an iOS Simulator destination (e.g. **iPhone 15 Pro** or **iPhone 16** running iOS 17+).
+4. Press **`Cmd + R`** (or click the **Run `▶`** button) to build and launch the application in the iOS Simulator.
+5. **To view interactive SwiftUI Previews:**
+   - Open `TasteIndia/Presentation/RecipeList/RecipeListView.swift` or `RecipeDetailView.swift`.
+   - Press **`Option + Cmd + P`** (Resume Canvas) to interact with live previews directly in the Xcode canvas.
+
+### Option 2: Command Line (CLI / CI via Swift Package Manager)
+Run directly from Terminal on macOS:
+```bash
+# Run all 4 deterministic unit tests offline
+swift test
+
+# Compile and build the project targets
+swift build
+```
+
+> [!NOTE]
+> Native iOS execution and compilation require macOS and the Apple Xcode toolchain. The project has also been fully compiled, tested, and validated on Apple Silicon (`macos-14`) via automated GitHub Actions CI with passing results.
+
+---
+
+## 3. Architecture & Design
 
 The application follows Clean Architecture principles with unidirectional data flow:
 
@@ -43,11 +69,11 @@ The application follows Clean Architecture principles with unidirectional data f
 
 ---
 
-## 3. Key Technical Decisions & Rubric Compliance
+## 4. Key Technical Decisions & Rubric Compliance
 
 ### A. The "Indian Boundary" Local Set Intersection Strategy
 TheMealDB V1 does not offer an endpoint combining cuisine area, category, and ingredients. Calling `filter.php?c=Chicken` returns worldwide dishes (e.g., Italian, American). 
-* **Implementation:** The app fetches the authoritative Indian meal base set via `filter.php?a=Indian`. When category or ingredient filters are selected, their returned global meal IDs are intersected locally:
+* **Implementation:** The app fetches the authoritative Indian meal base set via `filter.php?a=India` (with automatic fallback to `filter.php?a=Indian` to safeguard against API changes). When category or ingredient filters are selected, their returned global meal IDs are intersected locally:
   $$\text{Target IDs} = \text{Indian IDs} \cap \text{Category IDs} \cap \text{Ingredient IDs}$$
 * This guarantees that non-Indian meals never leak into the discovery feed.
 
@@ -72,12 +98,12 @@ TheMealDB V1 does not offer an endpoint combining cuisine area, category, and in
 
 ---
 
-## 4. Route Map
+## 5. Route Map
 - `AppRoute.recipeDetail(idMeal: String)`: Opens recipe detail screen for the given meal ID.
 
 ---
 
-## 5. Offline Unit Tests
+## 6. Offline Unit Tests
 
 Run unit tests via command line or Xcode:
 ```bash
@@ -92,12 +118,12 @@ The test suite runs 100% offline using bundled JSON fixtures in `TasteIndiaTests
 
 ---
 
-## 6. Assumptions & Tradeoffs
+## 7. Assumptions & Tradeoffs
 - **Local Search:** Since the Indian cuisine collection on TheMealDB contains ~30-40 meals, performing name filtering locally across the loaded Indian set is instantaneous, preserves the Indian boundary, and avoids unnecessary network requests.
 - **In-Memory Detail Cache:** Caching viewed details in memory provides fast re-navigation without disk overhead.
 
 ---
 
-## 7. AI Tool Disclosure
+## 8. AI Tool Disclosure
 - AI assistance was used for generating boilerplate DTO structures, JSON mock fixtures, and initial test setup.
 - All domain mappings, set intersection logic, concurrency controls, and SwiftUI components were reviewed, adapted, and verified manually.
